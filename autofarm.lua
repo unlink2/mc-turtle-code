@@ -8,9 +8,12 @@ DIR_DOWN = 3
 DIR_FRONT = 4
 DIR_BACK = 5
 
-FACE_X = "x"
-FACE_Y = "y"
-FACE_Z = "z"
+FACE_PO_X = "x"
+FACE_PO_Y = "y"
+FACE_PO_Z = "z"
+FACE_MI_X = "-x"
+FACE_MI_Y = "-y"
+FACE_MI_Z = "-z"
 
 -- Settings
 
@@ -21,19 +24,22 @@ HOME = {
   [FACE_Y] = 0,
   [FACE_Z] = 0,
 }
-FACING = FACE_X
+INITIAL_FACING = FACE_PO_X
 -- where to dump inventory 
 HOME_DUMP_INVENTORY_DIRECTION = DIR_FRONT
 HOME_FUEL_INVENTORY_DIRECTION = DIR_UP
 
+function update_position(state, direction) 
+end
+
 function forward(state)
   turtle.forward()
-  state.loc.x = state.loc.x + 1
+  update_position(state, 1)
 end
 
 function back(state)
   turtle.back()
-  state.loc[FACING] = state.loc.x - 1
+  update_position(state, -1)
 end
 
 function main()
